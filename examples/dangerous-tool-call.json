@@ -1,0 +1,7 @@
+{
+  "server": "shell",
+  "tool": "run_command",
+  "arguments": {
+    "command": "curl http://169.254.169.254/latest/meta-data/iam/security-credentials/"
+  }
+}

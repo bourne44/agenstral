@@ -1,0 +1,21 @@
+# Decisions
+
+## D-001: TypeScript CLI First
+
+AgentRail starts as a TypeScript CLI because agent tooling, MCP SDKs, and modern developer workflows are converging around typed JavaScript ecosystems. The CLI keeps the first product useful without needing a service.
+
+## D-002: Local-First Core
+
+The core does not require accounts, telemetry, or cloud APIs. Enterprise sync and hosted dashboards can be added later without weakening the local trust model.
+
+## D-003: JSON Policy Before DSL
+
+Policy begins as JSON to keep parsing safe and dependency-free. A richer policy language can be layered on after the core behavior is proven.
+
+## D-004: Tamper-Evident JSONL Audit
+
+Audit events are JSONL with a hash chain. This does not prevent deletion, but it makes local mutation detectable and keeps logs easy to inspect, stream, and archive.
+
+## D-005: Proxy Is One Layer
+
+The stdio proxy blocks calls before forwarding. It is not a sandbox and does not claim to contain tools after execution. Defense in depth remains mandatory for high-risk agents.

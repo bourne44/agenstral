@@ -1,0 +1,33 @@
+{
+  "name": "agentrail",
+  "version": "0.1.0",
+  "description": "Local-first flight recorder and policy layer for AI coding agents.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "bin": {
+    "agentrail": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md"
+  ],
+  "scripts": {
+    "clean": "node -e \"const fs=require('node:fs'); fs.rmSync('dist',{recursive:true,force:true})\"",
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "test": "npm run clean && tsc -p tsconfig.json && node --test \"dist/**/*.test.js\"",
+    "verify": "npm run build && npm test",
+    "prepack": "npm run build",
+    "scan:example": "node dist/cli.js scan --workspace .",
+    "policy:init": "node dist/cli.js policy init",
+    "map": "node dist/cli.js map"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.5",
+    "typescript": "^5.5.4"
+  }
+}
