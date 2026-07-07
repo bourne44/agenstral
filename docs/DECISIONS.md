@@ -23,3 +23,7 @@ The stdio proxy blocks calls before forwarding. It is not a sandbox and does not
 ## D-006: Agenstral Name And Positioning
 
 The original working name collided with existing projects in the AI coding-agent control-plane space. The project is now named Agenstral and is intentionally positioned as a repository-level preflight and audit recorder, not an agent framework, MCP gateway, or enterprise task lifecycle control plane.
+
+## D-007: Evidence Bundle As Backtracking Contract
+
+Agenstral writes a portable JSON evidence bundle that includes scan output, effective policy, audit records, audit verification, Git state, system map, and a rendered HTML report. The bundle has its own deterministic hash so handoff, CI artifacts, and future dashboards can verify the same local evidence without rereading the whole repository.

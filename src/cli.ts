@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { runAuditCommand } from "./commands/audit.js";
+import { runBundleCommand } from "./commands/bundle.js";
 import { runCheckCommand } from "./commands/check.js";
 import { runMapCommand } from "./commands/map.js";
 import { runPolicyCommand } from "./commands/policy.js";
@@ -21,6 +22,8 @@ Usage:
   agenstral audit verify <audit.jsonl>
   agenstral map
   agenstral report [--workspace <path>] [--audit <audit.jsonl>] [--out <report.html>]
+  agenstral bundle [create] [--workspace <path>] [--policy <policy.json>] [--audit <audit.jsonl>] [--out <bundle.json>]
+  agenstral bundle verify <bundle.json>
   agenstral state [--workspace <path>] [--json]
 `;
 
@@ -52,6 +55,9 @@ async function main(argv: string[]): Promise<void> {
       return;
     case "report":
       await runReportCommand(args);
+      return;
+    case "bundle":
+      await runBundleCommand(args);
       return;
     case "state":
       await runStateCommand(args);

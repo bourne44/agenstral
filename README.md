@@ -32,6 +32,8 @@ agenstral run --approve-ask -- node --version
 agenstral audit verify .agenstral/audit.jsonl
 agenstral map
 agenstral report
+agenstral bundle
+agenstral bundle verify .agenstral/bundle.json
 agenstral state
 ```
 
@@ -46,6 +48,8 @@ agenstral state
 - `audit verify`: verify the audit hash chain.
 - `map`: print the project component map so contributors can navigate without rereading the entire codebase.
 - `report`: write a local HTML report with scan findings, audit timeline, Git state, and system map.
+- `bundle`: write a portable JSON evidence bundle plus a synced HTML report for handoff and backtracking.
+- `bundle verify`: verify bundle integrity and the embedded audit hash chain.
 - `state`: print the compact project state: package, policy, audit integrity, scan summary, and Git change count.
 
 ## Design Principles

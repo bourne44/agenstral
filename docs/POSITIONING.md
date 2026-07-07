@@ -17,6 +17,7 @@ It is:
 - A shell command approval layer for local workflows.
 - A tamper-evident audit recorder.
 - A compact report surface for handoff and backtracking.
+- A portable evidence bundle for CI artifacts, reviews, and future dashboards.
 
 ## Core User
 
@@ -27,6 +28,7 @@ The primary user is a developer or security-minded maintainer who wants to run a
 - Whether risky shell commands were attempted.
 - What happened during the session.
 - Whether the local evidence log was modified.
+- Whether a handoff artifact still matches the recorded local evidence.
 
 ## Product Boundary
 

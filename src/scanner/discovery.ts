@@ -66,7 +66,7 @@ async function discoverMcpConfigs(workspace: string, findings: Finding[]): Promi
 function candidateConfigPaths(workspace: string): string[] {
   const home = homedir();
   const appData = process.env["APPDATA"];
-  const explicit = process.env["AGENTRAIL_MCP_CONFIG"];
+  const explicit = process.env["AGENSTRAL_MCP_CONFIG"];
   const paths = [
     join(workspace, "mcp.json"),
     join(workspace, ".cursor", "mcp.json"),

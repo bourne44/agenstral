@@ -39,5 +39,10 @@ export const SYSTEM_COMPONENTS: SystemComponent[] = [
     name: "Reporting",
     purpose: "Stable human-readable output for scans, decisions, audit, reports, and maps.",
     owns: ["src/reporting/console.ts", "src/reporting/htmlReport.ts", "src/commands/report.ts"]
+  },
+  {
+    name: "Bundle",
+    purpose: "Portable evidence snapshots for fast handoff, audit verification, and backtracking.",
+    owns: ["src/bundle/evidenceBundle.ts", "src/commands/bundle.ts"]
   }
 ];

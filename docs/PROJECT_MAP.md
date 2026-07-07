@@ -8,6 +8,7 @@ This file is the navigation layer for contributors. It should stay short and cur
 - `src/commands/*`: command handlers. They compose core modules and handle user output.
 - `src/policy/*`: deterministic policy loading and evaluation.
 - `src/audit/*`: tamper-evident JSONL audit records.
+- `src/bundle/*`: portable evidence bundles for handoff and backtracking.
 - `src/scanner/*`: local discovery and static risk checks.
 - `src/proxy/*`: stdio MCP mediation.
 - `src/secrets/*`: secret detection and redaction.
@@ -23,13 +24,16 @@ This file is the navigation layer for contributors. It should stay short and cur
 5. `proxy` intercepts MCP `tools/call`, evaluates policy, writes audit events, and forwards or blocks.
 6. `audit verify` recalculates the hash chain and reports tampering.
 7. `report` writes a local HTML summary for review and handoff.
-8. `state` prints package, policy, audit, scan, and Git status for quick backtracking.
+8. `bundle` writes a JSON evidence snapshot with scan, policy, audit records, Git state, system map, HTML report, and a bundle hash.
+9. `bundle verify` checks the bundle hash and embedded audit chain.
+10. `state` prints package, policy, audit, scan, and Git status for quick backtracking.
 
 ## Debugging Shortcut
 
 - Policy bug: inspect `src/policy/policyEngine.ts` and tests.
 - Audit bug: inspect `src/audit/auditLog.ts` and tests.
+- Bundle bug: inspect `src/bundle/evidenceBundle.ts` and tests.
 - Scan false positive: inspect `src/scanner/*` and `src/secrets/detect.ts`.
 - Proxy issue: inspect `src/proxy/stdioProxy.ts`.
 - CLI wiring issue: inspect `src/cli.ts` and the matching command in `src/commands`.
-- Backtracking issue: run `agenstral state` first, then `agenstral report`.
+- Backtracking issue: run `agenstral state` first, then `agenstral bundle verify .agenstral/bundle.json`, then `agenstral report`.

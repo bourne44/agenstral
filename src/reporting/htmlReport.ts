@@ -251,7 +251,7 @@ function renderAudit(records: AuditRecord[]): string {
   return `<ul class="timeline">
     ${records.map((record) => `<li>
       <h3>${escapeHtml(record.kind)} <span class="pill">${escapeHtml(record.hash.slice(0, 12))}</span></h3>
-      <div class="muted">${escapeHtml(record.timestamp)} · ${escapeHtml(record.id)}</div>
+      <div class="muted">${escapeHtml(record.timestamp)} - ${escapeHtml(record.id)}</div>
       <code>prev=${escapeHtml(record.previousHash ?? "none")}</code>
     </li>`).join("")}
   </ul>`;

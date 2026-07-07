@@ -38,6 +38,10 @@ export async function readAuditRecords(path: string): Promise<AuditRecord[]> {
 
 export async function verifyAuditLog(path: string): Promise<AuditVerification> {
   const records = await readAuditRecords(path);
+  return verifyAuditRecords(records);
+}
+
+export function verifyAuditRecords(records: AuditRecord[]): AuditVerification {
   const errors: string[] = [];
   let previousHash: string | null = null;
 
@@ -79,7 +83,7 @@ function parseAuditRecord(line: string, lineNumber: number): AuditRecord {
   return parsed;
 }
 
-function isAuditRecord(value: unknown): value is AuditRecord {
+export function isAuditRecord(value: unknown): value is AuditRecord {
   const candidate = value as Partial<AuditRecord>;
   return (
     value !== null &&
