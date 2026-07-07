@@ -35,3 +35,7 @@ The scanner performs deterministic checks for risky package scripts and GitHub A
 ## D-009: SARIF As CI Interchange Format
 
 Agenstral exports scan findings as SARIF 2.1.0 so CI systems and future dashboards can consume the same local findings without a proprietary service. SARIF generation stays in the reporting layer; scanners emit neutral findings and do not know about CI-specific output.
+
+## D-010: Doctor As Release Readiness Gate
+
+Agenstral includes a doctor command that composes required file checks, package metadata, release scripts, ignored generated paths, CI presence, scan results, audit verification, and Git cleanliness. The command is intentionally local and deterministic so maintainers can diagnose release blockers without reading unrelated code.

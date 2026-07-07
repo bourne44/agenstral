@@ -44,5 +44,10 @@ export const SYSTEM_COMPONENTS: SystemComponent[] = [
     name: "Bundle",
     purpose: "Portable evidence snapshots for fast handoff, audit verification, and backtracking.",
     owns: ["src/bundle/evidenceBundle.ts", "src/commands/bundle.ts"]
+  },
+  {
+    name: "Doctor",
+    purpose: "Release and handoff readiness checks across project metadata, CI, scan, audit, and Git state.",
+    owns: ["src/doctor/doctor.ts", "src/commands/doctor.ts"]
   }
 ];

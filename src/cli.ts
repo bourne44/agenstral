@@ -2,6 +2,7 @@
 import { runAuditCommand } from "./commands/audit.js";
 import { runBundleCommand } from "./commands/bundle.js";
 import { runCheckCommand } from "./commands/check.js";
+import { runDoctorCommand } from "./commands/doctor.js";
 import { runMapCommand } from "./commands/map.js";
 import { runPolicyCommand } from "./commands/policy.js";
 import { runProxyCommand } from "./commands/proxy.js";
@@ -16,6 +17,7 @@ Usage:
   agenstral scan [--workspace <path>] [--json|--sarif] [--out <path>] [--fail-on <severity>]
   agenstral policy init [--force]
   agenstral check --call <tool-call.json> [--policy <policy.json>] [--audit <audit.jsonl>]
+  agenstral doctor [--workspace <path>] [--json] [--fail-on <warn|fail>]
   agenstral run [--approve-ask] [--policy <policy.json>] [--audit <audit.jsonl>] -- <command> [args...]
   agenstral proxy --name <server> [--policy <policy.json>] [--audit <audit.jsonl>] -- <command> [args...]
   agenstral audit view <audit.jsonl>
@@ -40,6 +42,9 @@ async function main(argv: string[]): Promise<void> {
       return;
     case "check":
       await runCheckCommand(args);
+      return;
+    case "doctor":
+      await runDoctorCommand(args);
       return;
     case "proxy":
       await runProxyCommand(args);

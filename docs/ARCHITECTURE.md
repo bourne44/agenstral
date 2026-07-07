@@ -13,7 +13,8 @@ Agenstral is a local-first security tool for AI coding agents. The architecture 
    - `src/policy/*`
    - `src/audit/*`
    - `src/secrets/*`
-   - Owns deterministic decisions, audit integrity, and redaction.
+   - `src/doctor/*`
+   - Owns deterministic decisions, audit integrity, redaction, and readiness checks.
 
 3. Adapter layer
    - `src/scanner/*`

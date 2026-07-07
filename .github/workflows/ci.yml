@@ -31,6 +31,9 @@ jobs:
       - name: Package dry run
         run: npm pack --dry-run
 
+      - name: Doctor
+        run: npm run doctor
+
       - name: Scan repository
         run: npm run scan:ci
 

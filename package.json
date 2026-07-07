@@ -19,6 +19,7 @@
     "test": "npm run clean && tsc -p tsconfig.json && node --test \"dist/**/*.test.js\"",
     "verify": "npm run build && npm test",
     "prepack": "npm run build",
+    "doctor": "node dist/cli.js doctor --workspace . --fail-on fail",
     "scan:example": "node dist/cli.js scan --workspace .",
     "scan:ci": "node dist/cli.js scan --workspace . --fail-on medium",
     "scan:sarif": "node dist/cli.js scan --workspace . --sarif --out .agenstral/scan.sarif",

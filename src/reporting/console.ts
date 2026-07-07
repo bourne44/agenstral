@@ -1,4 +1,5 @@
 import type { AuditRecord, PolicyDecision, ScanReport, ToolCall } from "../domain/types.js";
+import type { DoctorReport } from "../doctor/doctor.js";
 import { SYSTEM_COMPONENTS } from "../systemMap.js";
 
 export function formatDecision(call: ToolCall, decision: PolicyDecision): string {
@@ -66,6 +67,26 @@ export function formatSystemMap(): string {
   for (const component of SYSTEM_COMPONENTS) {
     lines.push(`- ${component.name}: ${component.purpose}`);
     lines.push(`  owns: ${component.owns.join(", ")}`);
+  }
+
+  return lines.join("\n");
+}
+
+export function formatDoctorReport(report: DoctorReport): string {
+  const lines = [
+    "Agenstral Doctor",
+    `Workspace: ${report.workspace}`,
+    `Checks: pass=${report.summary.pass}, warn=${report.summary.warn}, fail=${report.summary.fail}`,
+    ""
+  ];
+
+  for (const check of report.checks) {
+    lines.push(`- [${check.status}] ${check.title}`);
+    lines.push(`  id: ${check.id}`);
+    lines.push(`  detail: ${check.detail}`);
+    if (check.recommendation) {
+      lines.push(`  recommendation: ${check.recommendation}`);
+    }
   }
 
   return lines.join("\n");
