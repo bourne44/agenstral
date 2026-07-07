@@ -12,6 +12,7 @@ Use this workflow to reduce mistakes and avoid expensive backtracking.
 
 ## Release Gate
 
+- `npm run release:check` passes.
 - `npm run verify` passes.
 - `npm run doctor` passes with no failing checks.
 - `agenstral scan --workspace . --fail-on medium` passes.
@@ -24,7 +25,7 @@ Use this workflow to reduce mistakes and avoid expensive backtracking.
 
 ## CI Gate
 
-The repository workflow in `.github/workflows/ci.yml` runs install, build, tests, package dry-run, doctor, repository scan, SARIF export, evidence bundle creation, bundle verification, and evidence artifact upload. GitHub Actions are pinned to full commit SHAs so the workflow passes Agenstral's own supply-chain checks.
+The repository workflow in `.github/workflows/ci.yml` runs install, build, tests, package dry-run, doctor, repository scan, SARIF export, evidence bundle creation, bundle verification, and evidence artifact upload. GitHub Actions are pinned to full commit SHAs so the workflow passes Agenstral's own supply-chain checks. The local equivalent is `npm run release:check`.
 
 ## Backtracking Model
 
@@ -32,6 +33,7 @@ The source of truth is split into compact layers:
 
 - Intent and structure: `docs/PROJECT_MAP.md`
 - Rationale: `docs/DECISIONS.md`
+- Release process: `docs/RELEASE.md`
 - Readiness: `agenstral doctor --workspace .`
 - Behavior: tests
 - Runtime evidence: `.agenstral/audit.jsonl`

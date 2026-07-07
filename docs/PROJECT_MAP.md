@@ -15,6 +15,9 @@ This file is the navigation layer for contributors. It should stay short and cur
 - `src/secrets/*`: secret detection and redaction.
 - `src/reporting/*`: stable console, HTML, and SARIF output.
 - `src/systemMap.ts`: machine-readable component map printed by `agenstral map`.
+- `docs/RELEASE.md`: release gate, publication checklist, and evidence outputs.
+- `docs/ROADMAP.md`: planned direction without changing the local-first product boundary.
+- `CHANGELOG.md`: versioned project changes.
 
 ## Data Flow
 
@@ -43,3 +46,4 @@ This file is the navigation layer for contributors. It should stay short and cur
 - CLI wiring issue: inspect `src/cli.ts` and the matching command in `src/commands`.
 - Backtracking issue: run `agenstral state` first, then `agenstral bundle verify .agenstral/bundle.json`, then `agenstral report`.
 - CI issue: inspect `.github/workflows/ci.yml`, then rerun `npm run verify`, `npm pack --dry-run`, `npm run doctor`, and `npm run scan:ci`.
+- Release issue: run `npm run release:check`, then inspect `docs/RELEASE.md`.

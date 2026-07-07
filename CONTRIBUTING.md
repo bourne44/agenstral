@@ -7,6 +7,7 @@ Agenstral values small, reviewed changes that improve local trust in AI agent wo
 ```sh
 npm install
 npm run verify
+npm run release:check
 ```
 
 ## Rules
@@ -14,6 +15,7 @@ npm run verify
 - Keep runtime dependencies minimal.
 - Keep policy behavior deterministic.
 - Add tests for every policy or audit behavior change.
+- Run `npm run release:check` before release-oriented changes or handoff.
 - Update `docs/PROJECT_MAP.md` when adding a module.
 - Update `docs/DECISIONS.md` when introducing a new architectural decision.
 

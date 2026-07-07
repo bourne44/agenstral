@@ -9,8 +9,8 @@ import { isJsonObject } from "../utils/jsonFile.js";
 
 const execFileAsync = promisify(execFile);
 
-const REQUIRED_FILES = ["README.md", "LICENSE", "SECURITY.md", "AGENTS.md"];
-const REQUIRED_SCRIPTS = ["build", "test", "verify", "scan:ci", "scan:sarif"];
+const REQUIRED_FILES = ["README.md", "LICENSE", "SECURITY.md", "CONTRIBUTING.md", "CHANGELOG.md", "AGENTS.md"];
+const REQUIRED_SCRIPTS = ["build", "test", "verify", "release:check", "scan:ci", "scan:sarif"];
 const GENERATED_IGNORES = [".agenstral/", "dist/", "node_modules/"];
 
 export type DoctorStatus = "pass" | "warn" | "fail";

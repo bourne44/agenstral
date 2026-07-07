@@ -40,6 +40,12 @@ agenstral bundle verify .agenstral/bundle.json
 agenstral state
 ```
 
+Before a release or handoff:
+
+```sh
+npm run release:check
+```
+
 ## Core Commands
 
 - `scan`: discover MCP configs, agent guidance files, risky package scripts, risky GitHub Actions workflows, exposed secrets, and missing project controls. Use `--fail-on <severity>` in CI and `--sarif --out <path>` for standard security artifacts.
@@ -70,8 +76,11 @@ agenstral state
 - [Architecture](docs/ARCHITECTURE.md): layers, contracts, and extension path.
 - [Threat model](docs/THREAT_MODEL.md): what Agenstral does and does not protect.
 - [Workflow](docs/WORKFLOW.md): local development loop and release gate.
+- [Release](docs/RELEASE.md): local release process and publication checklist.
+- [Roadmap](docs/ROADMAP.md): near-term and long-term direction.
 - [Decisions](docs/DECISIONS.md): short architectural decision record.
 - [Positioning](docs/POSITIONING.md): what this project is and deliberately is not.
+- [Changelog](CHANGELOG.md): notable changes by version.
 
 ## License
 

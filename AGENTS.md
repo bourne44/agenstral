@@ -5,6 +5,7 @@
 - Install dependencies with `npm install`.
 - Build with `npm run build`.
 - Run the full local gate with `npm run verify`.
+- Run the release gate with `npm run release:check` before handoff.
 
 ## Code Style
 

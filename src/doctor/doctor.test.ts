@@ -32,6 +32,8 @@ async function createWorkspace(options: { omitLicense?: boolean } = {}): Promise
     await writeFile(join(workspace, "LICENSE"), "Apache-2.0\n", "utf8");
   }
   await writeFile(join(workspace, "SECURITY.md"), "# Security\n", "utf8");
+  await writeFile(join(workspace, "CONTRIBUTING.md"), "# Contributing\n", "utf8");
+  await writeFile(join(workspace, "CHANGELOG.md"), "# Changelog\n", "utf8");
   await writeFile(join(workspace, "AGENTS.md"), "Setup: npm install\nTesting: npm test\nSecurity: no secrets.\n", "utf8");
   await writeFile(join(workspace, ".gitignore"), ".agenstral/\ndist/\nnode_modules/\n", "utf8");
   await writeFile(
@@ -49,6 +51,7 @@ async function createWorkspace(options: { omitLicense?: boolean } = {}): Promise
           build: "tsc",
           test: "node --test",
           verify: "npm run build && npm test",
+          "release:check": "npm run verify && npm pack --dry-run",
           "scan:ci": "node dist/cli.js scan --workspace . --fail-on medium",
           "scan:sarif": "node dist/cli.js scan --workspace . --sarif --out .agenstral/scan.sarif"
         },

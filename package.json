@@ -4,12 +4,25 @@
   "description": "Local preflight and audit recorder for AI coding agents working inside repositories.",
   "type": "module",
   "license": "Apache-2.0",
+  "keywords": [
+    "ai-agents",
+    "mcp",
+    "security",
+    "audit",
+    "sarif",
+    "supply-chain",
+    "cli"
+  ],
   "bin": {
     "agenstral": "./dist/cli.js"
   },
   "files": [
     "dist",
+    "docs",
     "README.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "AGENTS.md",
     "LICENSE",
     "SECURITY.md"
   ],
@@ -19,6 +32,7 @@
     "test": "npm run clean && tsc -p tsconfig.json && node --test \"dist/**/*.test.js\"",
     "verify": "npm run build && npm test",
     "prepack": "npm run build",
+    "release:check": "npm run verify && npm pack --dry-run && npm run doctor && npm run scan:ci && npm run scan:sarif && node dist/cli.js bundle --no-report && node dist/cli.js bundle verify .agenstral/bundle.json",
     "doctor": "node dist/cli.js doctor --workspace . --fail-on fail",
     "scan:example": "node dist/cli.js scan --workspace .",
     "scan:ci": "node dist/cli.js scan --workspace . --fail-on medium",

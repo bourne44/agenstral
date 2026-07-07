@@ -39,3 +39,7 @@ Agenstral exports scan findings as SARIF 2.1.0 so CI systems and future dashboar
 ## D-010: Doctor As Release Readiness Gate
 
 Agenstral includes a doctor command that composes required file checks, package metadata, release scripts, ignored generated paths, CI presence, scan results, audit verification, and Git cleanliness. The command is intentionally local and deterministic so maintainers can diagnose release blockers without reading unrelated code.
+
+## D-011: Single Local Release Gate
+
+The project exposes `npm run release:check` as the local equivalent of the CI release path. It chains build, tests, package dry-run, doctor, scan, SARIF export, evidence bundle creation, and bundle verification so maintainers can prove readiness with one command before publishing or handing off work.
