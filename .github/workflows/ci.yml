@@ -1,0 +1,41 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Verify
+        run: npm run verify
+
+      - name: Package dry run
+        run: npm pack --dry-run
+
+      - name: Scan repository
+        run: npm run scan:ci
+
+      - name: Create evidence bundle
+        run: node dist/cli.js bundle --no-report
+
+      - name: Verify evidence bundle
+        run: node dist/cli.js bundle verify .agenstral/bundle.json

@@ -18,6 +18,7 @@ This file is the navigation layer for contributors. It should stay short and cur
 ## Data Flow
 
 1. `scan` reads workspace files, package scripts, workflow files, and known config paths, then emits findings.
+   Use `--fail-on <severity>` when the scan must behave as a CI gate.
 2. `policy init` writes `.agenstral/policy.json`.
 3. `check` loads one tool call and evaluates it against policy.
 4. `run` evaluates a shell command against policy, writes audit events, and executes only when allowed or explicitly approved.
@@ -37,3 +38,4 @@ This file is the navigation layer for contributors. It should stay short and cur
 - Proxy issue: inspect `src/proxy/stdioProxy.ts`.
 - CLI wiring issue: inspect `src/cli.ts` and the matching command in `src/commands`.
 - Backtracking issue: run `agenstral state` first, then `agenstral bundle verify .agenstral/bundle.json`, then `agenstral report`.
+- CI issue: inspect `.github/workflows/ci.yml`, then rerun `npm run verify`, `npm pack --dry-run`, and `npm run scan:ci`.

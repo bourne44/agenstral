@@ -13,12 +13,16 @@ Use this workflow to reduce mistakes and avoid expensive backtracking.
 ## Release Gate
 
 - `npm run verify` passes.
-- `agenstral scan --workspace .` has no critical findings created by the project itself.
+- `agenstral scan --workspace . --fail-on medium` passes.
 - `agenstral audit verify <log>` succeeds for generated demo logs.
 - `agenstral report` writes `.agenstral/report.html`.
 - `agenstral bundle` writes `.agenstral/bundle.json` and a synced report.
 - `agenstral bundle verify .agenstral/bundle.json` succeeds.
 - README commands still work.
+
+## CI Gate
+
+The repository workflow in `.github/workflows/ci.yml` runs install, build, tests, package dry-run, repository scan, evidence bundle creation, and bundle verification. GitHub Actions are pinned to full commit SHAs so the workflow passes Agenstral's own supply-chain checks.
 
 ## Backtracking Model
 

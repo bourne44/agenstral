@@ -20,6 +20,7 @@
     "verify": "npm run build && npm test",
     "prepack": "npm run build",
     "scan:example": "node dist/cli.js scan --workspace .",
+    "scan:ci": "node dist/cli.js scan --workspace . --fail-on medium",
     "policy:init": "node dist/cli.js policy init",
     "map": "node dist/cli.js map"
   },
