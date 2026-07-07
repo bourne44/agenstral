@@ -27,6 +27,7 @@ Then:
 ```sh
 agenstral scan --workspace .
 agenstral scan --workspace . --fail-on medium
+agenstral scan --workspace . --sarif --out .agenstral/scan.sarif
 agenstral policy init
 agenstral check --call examples/tool-call.json
 agenstral run --approve-ask -- node --version
@@ -40,7 +41,7 @@ agenstral state
 
 ## Core Commands
 
-- `scan`: discover MCP configs, agent guidance files, risky package scripts, risky GitHub Actions workflows, exposed secrets, and missing project controls. Use `--fail-on <severity>` in CI.
+- `scan`: discover MCP configs, agent guidance files, risky package scripts, risky GitHub Actions workflows, exposed secrets, and missing project controls. Use `--fail-on <severity>` in CI and `--sarif --out <path>` for standard security artifacts.
 - `policy init`: create a starter `.agenstral/policy.json`.
 - `check`: evaluate one tool call JSON file against policy.
 - `run`: execute a local shell command through Agenstral policy and audit logging.

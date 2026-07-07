@@ -34,8 +34,22 @@ jobs:
       - name: Scan repository
         run: npm run scan:ci
 
+      - name: Create SARIF scan
+        if: always()
+        run: npm run scan:sarif
+
       - name: Create evidence bundle
         run: node dist/cli.js bundle --no-report
 
       - name: Verify evidence bundle
         run: node dist/cli.js bundle verify .agenstral/bundle.json
+
+      - name: Upload evidence artifacts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: agenstral-evidence
+          path: |
+            .agenstral/scan.sarif
+            .agenstral/bundle.json
+          if-no-files-found: ignore

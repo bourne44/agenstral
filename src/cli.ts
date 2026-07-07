@@ -13,7 +13,7 @@ import { runStateCommand } from "./commands/state.js";
 const HELP = `Agenstral
 
 Usage:
-  agenstral scan [--workspace <path>] [--json] [--fail-on <severity>]
+  agenstral scan [--workspace <path>] [--json|--sarif] [--out <path>] [--fail-on <severity>]
   agenstral policy init [--force]
   agenstral check --call <tool-call.json> [--policy <policy.json>] [--audit <audit.jsonl>]
   agenstral run [--approve-ask] [--policy <policy.json>] [--audit <audit.jsonl>] -- <command> [args...]

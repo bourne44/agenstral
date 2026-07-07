@@ -21,6 +21,7 @@
     "prepack": "npm run build",
     "scan:example": "node dist/cli.js scan --workspace .",
     "scan:ci": "node dist/cli.js scan --workspace . --fail-on medium",
+    "scan:sarif": "node dist/cli.js scan --workspace . --sarif --out .agenstral/scan.sarif",
     "policy:init": "node dist/cli.js policy init",
     "map": "node dist/cli.js map"
   },

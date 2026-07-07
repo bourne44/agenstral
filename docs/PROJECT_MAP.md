@@ -12,7 +12,7 @@ This file is the navigation layer for contributors. It should stay short and cur
 - `src/scanner/*`: local discovery plus MCP, package script, workflow, and static risk checks.
 - `src/proxy/*`: stdio MCP mediation.
 - `src/secrets/*`: secret detection and redaction.
-- `src/reporting/*`: stable console output and summaries.
+- `src/reporting/*`: stable console, HTML, and SARIF output.
 - `src/systemMap.ts`: machine-readable component map printed by `agenstral map`.
 
 ## Data Flow
@@ -35,6 +35,7 @@ This file is the navigation layer for contributors. It should stay short and cur
 - Audit bug: inspect `src/audit/auditLog.ts` and tests.
 - Bundle bug: inspect `src/bundle/evidenceBundle.ts` and tests.
 - Scan false positive: inspect `src/scanner/*`, especially `shellRisk.ts`, `packageScripts.ts`, `githubActions.ts`, and `src/secrets/detect.ts`.
+- SARIF issue: inspect `src/reporting/sarif.ts` and tests.
 - Proxy issue: inspect `src/proxy/stdioProxy.ts`.
 - CLI wiring issue: inspect `src/cli.ts` and the matching command in `src/commands`.
 - Backtracking issue: run `agenstral state` first, then `agenstral bundle verify .agenstral/bundle.json`, then `agenstral report`.

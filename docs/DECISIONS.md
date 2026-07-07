@@ -31,3 +31,7 @@ Agenstral writes a portable JSON evidence bundle that includes scan output, effe
 ## D-008: Heuristic Supply-Chain Checks Without Runtime Dependencies
 
 The scanner performs deterministic checks for risky package scripts and GitHub Actions workflow patterns without adding runtime parser dependencies. JSON manifests are parsed structurally; workflow checks are line-based and conservative. A full YAML parser can be introduced later if it materially reduces false positives or enables safer policy decisions.
+
+## D-009: SARIF As CI Interchange Format
+
+Agenstral exports scan findings as SARIF 2.1.0 so CI systems and future dashboards can consume the same local findings without a proprietary service. SARIF generation stays in the reporting layer; scanners emit neutral findings and do not know about CI-specific output.
