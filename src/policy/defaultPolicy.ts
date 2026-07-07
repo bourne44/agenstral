@@ -33,6 +33,29 @@ export const DEFAULT_POLICY: Policy = {
       }
     },
     {
+      id: "block-destructive-shell-patterns",
+      description: "Block destructive shell patterns that can erase history or source state.",
+      action: "deny",
+      match: {
+        server: [
+          "shell",
+          "terminal",
+          "command"
+        ],
+        tool: "*"
+      },
+      conditions: {
+        commandMatches: [
+          "\\brm\\s+-rf\\s+(/|~|\\$HOME)\\b",
+          "\\bRemove-Item\\b.*\\b-Recurse\\b.*\\b-Force\\b",
+          "\\bgit\\s+reset\\s+--hard\\b",
+          "\\bgit\\s+checkout\\s+--\\s+\\.\\b",
+          "\\bdel\\s+/[sq]\\b",
+          "\\bformat\\s+[A-Z]:"
+        ]
+      }
+    },
+    {
       id: "ask-shell-commands",
       description: "Require approval for shell execution.",
       action: "ask",

@@ -27,8 +27,8 @@ export const SYSTEM_COMPONENTS: SystemComponent[] = [
   },
   {
     name: "Proxy",
-    purpose: "Stdio MCP mediation before tool calls reach a server.",
-    owns: ["src/proxy/stdioProxy.ts"]
+    purpose: "Runtime mediation before tool calls or shell commands execute.",
+    owns: ["src/proxy/stdioProxy.ts", "src/commands/run.ts"]
   },
   {
     name: "Secrets",
@@ -37,7 +37,7 @@ export const SYSTEM_COMPONENTS: SystemComponent[] = [
   },
   {
     name: "Reporting",
-    purpose: "Stable human-readable output for scans, decisions, audit, and maps.",
-    owns: ["src/reporting/console.ts"]
+    purpose: "Stable human-readable output for scans, decisions, audit, reports, and maps.",
+    owns: ["src/reporting/console.ts", "src/reporting/htmlReport.ts", "src/commands/report.ts"]
   }
 ];

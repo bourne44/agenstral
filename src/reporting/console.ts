@@ -17,7 +17,7 @@ export function formatDecision(call: ToolCall, decision: PolicyDecision): string
 
 export function formatScanReport(report: ScanReport): string {
   const lines = [
-    "AgentRail Scan",
+    "Agenstral Scan",
     `Workspace: ${report.workspace}`,
     `MCP servers: ${report.configs.length}`,
     `Guidance files: ${report.guidance.length}`,
@@ -61,7 +61,7 @@ export function formatAuditRecords(records: AuditRecord[]): string {
 }
 
 export function formatSystemMap(): string {
-  const lines = ["AgentRail Component Map", ""];
+  const lines = ["Agenstral Component Map", ""];
 
   for (const component of SYSTEM_COMPONENTS) {
     lines.push(`- ${component.name}: ${component.purpose}`);

@@ -7,10 +7,10 @@ import { writeJsonFile } from "../utils/jsonFile.js";
 export async function runPolicyCommand(args: string[]): Promise<void> {
   const subcommand = args[0];
   if (subcommand !== "init") {
-    throw new Error("Usage: agentrail policy init [--force]");
+    throw new Error("Usage: agenstral policy init [--force]");
   }
 
-  const path = join(process.cwd(), ".agentrail", "policy.json");
+  const path = join(process.cwd(), ".agenstral", "policy.json");
   const force = hasFlag(args, "--force");
 
   if (!force && (await exists(path))) {

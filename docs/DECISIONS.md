@@ -2,7 +2,7 @@
 
 ## D-001: TypeScript CLI First
 
-AgentRail starts as a TypeScript CLI because agent tooling, MCP SDKs, and modern developer workflows are converging around typed JavaScript ecosystems. The CLI keeps the first product useful without needing a service.
+Agenstral starts as a TypeScript CLI because agent tooling, MCP SDKs, and modern developer workflows are converging around typed JavaScript ecosystems. The CLI keeps the first product useful without needing a service.
 
 ## D-002: Local-First Core
 
@@ -19,3 +19,7 @@ Audit events are JSONL with a hash chain. This does not prevent deletion, but it
 ## D-005: Proxy Is One Layer
 
 The stdio proxy blocks calls before forwarding. It is not a sandbox and does not claim to contain tools after execution. Defense in depth remains mandatory for high-risk agents.
+
+## D-006: Agenstral Name And Positioning
+
+The original working name collided with existing projects in the AI coding-agent control-plane space. The project is now named Agenstral and is intentionally positioned as a repository-level preflight and audit recorder, not an agent framework, MCP gateway, or enterprise task lifecycle control plane.

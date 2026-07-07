@@ -1,6 +1,6 @@
 # Contributing
 
-AgentRail values small, reviewed changes that improve local trust in AI agent workflows.
+Agenstral values small, reviewed changes that improve local trust in AI agent workflows.
 
 ## Development
 

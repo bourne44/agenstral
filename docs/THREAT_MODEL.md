@@ -1,6 +1,6 @@
 # Threat Model
 
-AgentRail protects the boundary between AI coding agents and the tools they can call.
+Agenstral protects the boundary between AI coding agents and the tools they can call.
 
 ## Assets
 
@@ -21,7 +21,8 @@ AgentRail protects the boundary between AI coding agents and the tools they can 
 ## In Scope
 
 - Discovering risky local MCP and agent configuration.
-- Blocking or requiring approval for risky tool calls routed through AgentRail.
+- Blocking or requiring approval for risky tool calls routed through Agenstral.
+- Blocking or requiring explicit approval for shell commands executed through `agenstral run`.
 - Redacting secret-looking values from audit output.
 - Detecting audit log modification through hash-chain verification.
 
@@ -29,13 +30,13 @@ AgentRail protects the boundary between AI coding agents and the tools they can 
 
 - Full process sandboxing.
 - Kernel-level egress control.
-- Guaranteeing coverage for actions not routed through AgentRail.
+- Guaranteeing coverage for actions not routed through Agenstral.
 - Preventing deletion of the whole audit log without an external append-only sink.
 
 ## Required Controls For High-Risk Use
 
 - Run untrusted agents in containers or VMs.
 - Use short-lived credentials with least privilege.
-- Route MCP servers through AgentRail or an equivalent gateway.
+- Route MCP servers through Agenstral or an equivalent gateway.
 - Store audit logs in append-only storage for regulated workflows.
 - Pin MCP server package versions.

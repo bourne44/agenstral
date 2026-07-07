@@ -120,7 +120,7 @@ async function handleClientLine(line: string, child: ChildProcessWithoutNullStre
     id: typeof id === "string" || typeof id === "number" || id === null ? id : null,
     error: {
       code: -32001,
-      message: `blocked by AgentRail policy: ${decision.reason}`,
+      message: `blocked by Agenstral policy: ${decision.reason}`,
       data: {
         action: decision.action,
         ruleId: decision.ruleId ?? null

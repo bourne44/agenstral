@@ -1,6 +1,6 @@
-# AgentRail
+# Agenstral
 
-AgentRail is a local-first flight recorder and policy layer for AI coding agents.
+Agenstral is a local preflight and audit tool for letting AI coding agents work inside a repository without guessing what they can touch.
 
 It gives developers a clear answer to three questions before an agent is trusted with a repository:
 
@@ -25,23 +25,27 @@ npm link
 Then:
 
 ```sh
-agentrail scan --workspace .
-agentrail policy init
-agentrail check --call examples/tool-call.json
-agentrail audit verify .agentrail/audit.jsonl
-agentrail map
-agentrail state
+agenstral scan --workspace .
+agenstral policy init
+agenstral check --call examples/tool-call.json
+agenstral run --approve-ask -- node --version
+agenstral audit verify .agenstral/audit.jsonl
+agenstral map
+agenstral report
+agenstral state
 ```
 
 ## Core Commands
 
 - `scan`: discover MCP configs, agent guidance files, risky commands, exposed secrets, and missing project controls.
-- `policy init`: create a starter `.agentrail/policy.json`.
+- `policy init`: create a starter `.agenstral/policy.json`.
 - `check`: evaluate one tool call JSON file against policy.
-- `proxy`: run a stdio MCP server behind AgentRail policy and audit logging.
+- `run`: execute a local shell command through Agenstral policy and audit logging.
+- `proxy`: run a stdio MCP server behind Agenstral policy and audit logging.
 - `audit view`: print a compact audit timeline.
 - `audit verify`: verify the audit hash chain.
 - `map`: print the project component map so contributors can navigate without rereading the entire codebase.
+- `report`: write a local HTML report with scan findings, audit timeline, Git state, and system map.
 - `state`: print the compact project state: package, policy, audit integrity, scan summary, and Git change count.
 
 ## Design Principles
@@ -56,9 +60,10 @@ agentrail state
 
 - [Project map](docs/PROJECT_MAP.md): compact navigation for contributors.
 - [Architecture](docs/ARCHITECTURE.md): layers, contracts, and extension path.
-- [Threat model](docs/THREAT_MODEL.md): what AgentRail does and does not protect.
+- [Threat model](docs/THREAT_MODEL.md): what Agenstral does and does not protect.
 - [Workflow](docs/WORKFLOW.md): local development loop and release gate.
 - [Decisions](docs/DECISIONS.md): short architectural decision record.
+- [Positioning](docs/POSITIONING.md): what this project is and deliberately is not.
 
 ## License
 

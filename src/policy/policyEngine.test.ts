@@ -36,6 +36,28 @@ test("denies cloud metadata service access", () => {
   assert.equal(decision.ruleId, "block-cloud-metadata-access");
 });
 
+test("denies destructive shell patterns", () => {
+  const decision = evaluatePolicy(DEFAULT_POLICY, {
+    server: "shell",
+    tool: "run_command",
+    arguments: { command: "git reset --hard HEAD" }
+  });
+
+  assert.equal(decision.action, "deny");
+  assert.equal(decision.ruleId, "block-destructive-shell-patterns");
+});
+
+test("asks before ordinary shell commands", () => {
+  const decision = evaluatePolicy(DEFAULT_POLICY, {
+    server: "shell",
+    tool: "run_command",
+    arguments: { command: "node --version" }
+  });
+
+  assert.equal(decision.action, "ask");
+  assert.equal(decision.ruleId, "ask-shell-commands");
+});
+
 test("asks on unknown calls", () => {
   const decision = evaluatePolicy(DEFAULT_POLICY, {
     server: "github",

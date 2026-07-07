@@ -46,8 +46,8 @@ export async function runStateCommand(args: string[]): Promise<void> {
 }
 
 async function collectProjectState(workspace: string): Promise<ProjectState> {
-  const policyPath = join(workspace, ".agentrail", "policy.json");
-  const auditPath = join(workspace, ".agentrail", "audit.jsonl");
+  const policyPath = join(workspace, ".agenstral", "policy.json");
+  const auditPath = join(workspace, ".agenstral", "audit.jsonl");
   const scan = await scanWorkspace({ workspace });
   const auditPresent = await exists(auditPath);
   const audit = auditPresent ? await verifyAuditLog(auditPath) : { ok: true, records: 0, errors: [] };
@@ -116,7 +116,7 @@ async function readGitState(workspace: string): Promise<ProjectState["git"]> {
       ignoredGenerated: lines
         .filter((line) => line.startsWith("!! "))
         .map((line) => line.slice(3))
-        .filter((path) => path === ".agentrail/" || path === "dist/" || path === "node_modules/")
+        .filter((path) => path === ".agenstral/" || path === "dist/" || path === "node_modules/")
     };
   } catch {
     return {
@@ -130,7 +130,7 @@ async function readGitState(workspace: string): Promise<ProjectState["git"]> {
 function formatProjectState(state: ProjectState): string {
   const name = state.packageName ? `${state.packageName}@${state.packageVersion ?? "unknown"}` : "unknown package";
   const lines = [
-    "AgentRail State",
+    "Agenstral State",
     `Workspace: ${state.workspace}`,
     `Package: ${name}`,
     `Policy: ${state.policyPresent ? "present" : "missing"}`,

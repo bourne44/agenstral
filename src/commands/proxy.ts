@@ -6,7 +6,7 @@ import { getFlag } from "../utils/args.js";
 export async function runProxyCommand(args: string[]): Promise<void> {
   const separator = args.indexOf("--");
   if (separator === -1) {
-    throw new Error("Usage: agentrail proxy --name <server> [--policy <policy.json>] [--audit <audit.jsonl>] -- <command> [args...]");
+    throw new Error("Usage: agenstral proxy --name <server> [--policy <policy.json>] [--audit <audit.jsonl>] -- <command> [args...]");
   }
 
   const ownArgs = args.slice(0, separator);
@@ -17,8 +17,8 @@ export async function runProxyCommand(args: string[]): Promise<void> {
   }
 
   const name = getFlag(ownArgs, "--name") ?? "mcp-server";
-  const policyPath = getFlag(ownArgs, "--policy") ?? join(process.cwd(), ".agentrail", "policy.json");
-  const auditPath = getFlag(ownArgs, "--audit") ?? join(process.cwd(), ".agentrail", "audit.jsonl");
+  const policyPath = getFlag(ownArgs, "--policy") ?? join(process.cwd(), ".agenstral", "policy.json");
+  const auditPath = getFlag(ownArgs, "--audit") ?? join(process.cwd(), ".agenstral", "audit.jsonl");
   const policy = await loadPolicy(policyPath);
 
   await runStdioProxy({

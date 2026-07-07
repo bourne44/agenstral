@@ -6,7 +6,7 @@ import { test } from "node:test";
 import { appendAuditEvent, readAuditRecords, verifyAuditLog } from "./auditLog.js";
 
 test("writes and verifies a hash-chained audit log", async () => {
-  const dir = await mkdtemp(join(tmpdir(), "agentrail-audit-"));
+  const dir = await mkdtemp(join(tmpdir(), "agenstral-audit-"));
   const path = join(dir, "audit.jsonl");
 
   await appendAuditEvent(path, { kind: "one", payload: { value: 1 } });
@@ -22,7 +22,7 @@ test("writes and verifies a hash-chained audit log", async () => {
 });
 
 test("detects audit tampering", async () => {
-  const dir = await mkdtemp(join(tmpdir(), "agentrail-audit-"));
+  const dir = await mkdtemp(join(tmpdir(), "agenstral-audit-"));
   const path = join(dir, "audit.jsonl");
 
   await appendAuditEvent(path, { kind: "one", payload: { value: 1 } });

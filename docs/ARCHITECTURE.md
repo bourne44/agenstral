@@ -1,6 +1,6 @@
 # Architecture
 
-AgentRail is a local-first security tool for AI coding agents. The architecture separates decisions from transport so the same policy engine can be reused by CLI checks, MCP proxying, future shell mediation, and dashboards.
+Agenstral is a local-first security tool for AI coding agents. The architecture separates decisions from transport so the same policy engine can be reused by CLI checks, MCP proxying, shell mediation, and dashboards.
 
 ## Layers
 
@@ -62,7 +62,7 @@ A JSONL record with a hash chain. The hash covers all fields except `hash`.
 
 ## Extension Path
 
-- Shell mediation should become another adapter that emits `ToolCall`.
+- Shell mediation is an adapter that emits `ToolCall`.
 - File write mediation should evaluate path constraints before writes.
-- Dashboard work should read audit JSONL and scan reports instead of reaching into core internals.
+- Dashboard and report work should read audit JSONL and scan reports instead of reaching into core internals.
 - Team sync should be an optional service above local logs, not a dependency of local enforcement.

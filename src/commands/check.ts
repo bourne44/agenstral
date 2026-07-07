@@ -10,11 +10,11 @@ import { isJsonObject, readJsonFile } from "../utils/jsonFile.js";
 export async function runCheckCommand(args: string[]): Promise<void> {
   const callPath = getFlag(args, "--call");
   if (!callPath) {
-    throw new Error("Usage: agentrail check --call <tool-call.json> [--policy <policy.json>] [--audit <audit.jsonl>]");
+    throw new Error("Usage: agenstral check --call <tool-call.json> [--policy <policy.json>] [--audit <audit.jsonl>]");
   }
 
-  const policyPath = getFlag(args, "--policy") ?? join(process.cwd(), ".agentrail", "policy.json");
-  const auditPath = getFlag(args, "--audit") ?? join(process.cwd(), ".agentrail", "audit.jsonl");
+  const policyPath = getFlag(args, "--policy") ?? join(process.cwd(), ".agenstral", "policy.json");
+  const auditPath = getFlag(args, "--audit") ?? join(process.cwd(), ".agenstral", "audit.jsonl");
   const call = parseToolCall(await readJsonFile(callPath));
   const policy = await loadPolicy(policyPath);
   const decision = evaluatePolicy(policy, call);

@@ -6,7 +6,7 @@ export async function runAuditCommand(args: string[]): Promise<void> {
   const path = args[1];
 
   if (!subcommand || !path || (subcommand !== "view" && subcommand !== "verify")) {
-    throw new Error("Usage: agentrail audit <view|verify> <audit.jsonl>");
+    throw new Error("Usage: agenstral audit <view|verify> <audit.jsonl>");
   }
 
   if (subcommand === "view") {

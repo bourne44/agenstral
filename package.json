@@ -1,11 +1,11 @@
 {
-  "name": "agentrail",
+  "name": "agenstral",
   "version": "0.1.0",
-  "description": "Local-first flight recorder and policy layer for AI coding agents.",
+  "description": "Local preflight and audit recorder for AI coding agents working inside repositories.",
   "type": "module",
   "license": "Apache-2.0",
   "bin": {
-    "agentrail": "./dist/cli.js"
+    "agenstral": "./dist/cli.js"
   },
   "files": [
     "dist",

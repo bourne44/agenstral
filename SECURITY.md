@@ -1,6 +1,6 @@
 # Security Policy
 
-AgentRail is security tooling, but it is not a sandbox. A denied call is blocked before execution when routed through an AgentRail proxy. A call that bypasses AgentRail is outside its control.
+Agenstral is security tooling, but it is not a sandbox. A denied call is blocked before execution when routed through an Agenstral proxy. A call that bypasses Agenstral is outside its control.
 
 ## Supported Versions
 
@@ -12,14 +12,14 @@ Please open a private security advisory if the repository host supports it. If n
 
 ## Threat Model
 
-AgentRail is designed to:
+Agenstral is designed to:
 
 - Discover risky agent and MCP configuration.
 - Enforce local policy before proxied tool calls execute.
 - Detect secret-looking values before logging or reporting.
 - Produce tamper-evident audit records for local verification.
 
-AgentRail is not designed to:
+Agenstral is not designed to:
 
 - Contain malicious processes after execution.
 - Replace OS sandboxing, container isolation, or network egress controls.

@@ -4,20 +4,24 @@ import { runCheckCommand } from "./commands/check.js";
 import { runMapCommand } from "./commands/map.js";
 import { runPolicyCommand } from "./commands/policy.js";
 import { runProxyCommand } from "./commands/proxy.js";
+import { runReportCommand } from "./commands/report.js";
+import { runShellCommand } from "./commands/run.js";
 import { runScanCommand } from "./commands/scan.js";
 import { runStateCommand } from "./commands/state.js";
 
-const HELP = `AgentRail
+const HELP = `Agenstral
 
 Usage:
-  agentrail scan [--workspace <path>] [--json]
-  agentrail policy init [--force]
-  agentrail check --call <tool-call.json> [--policy <policy.json>] [--audit <audit.jsonl>]
-  agentrail proxy --name <server> [--policy <policy.json>] [--audit <audit.jsonl>] -- <command> [args...]
-  agentrail audit view <audit.jsonl>
-  agentrail audit verify <audit.jsonl>
-  agentrail map
-  agentrail state [--workspace <path>] [--json]
+  agenstral scan [--workspace <path>] [--json]
+  agenstral policy init [--force]
+  agenstral check --call <tool-call.json> [--policy <policy.json>] [--audit <audit.jsonl>]
+  agenstral run [--approve-ask] [--policy <policy.json>] [--audit <audit.jsonl>] -- <command> [args...]
+  agenstral proxy --name <server> [--policy <policy.json>] [--audit <audit.jsonl>] -- <command> [args...]
+  agenstral audit view <audit.jsonl>
+  agenstral audit verify <audit.jsonl>
+  agenstral map
+  agenstral report [--workspace <path>] [--audit <audit.jsonl>] [--out <report.html>]
+  agenstral state [--workspace <path>] [--json]
 `;
 
 async function main(argv: string[]): Promise<void> {
@@ -37,11 +41,17 @@ async function main(argv: string[]): Promise<void> {
     case "proxy":
       await runProxyCommand(args);
       return;
+    case "run":
+      await runShellCommand(args);
+      return;
     case "audit":
       await runAuditCommand(args);
       return;
     case "map":
       await runMapCommand();
+      return;
+    case "report":
+      await runReportCommand(args);
       return;
     case "state":
       await runStateCommand(args);
@@ -59,6 +69,6 @@ async function main(argv: string[]): Promise<void> {
 
 main(process.argv.slice(2)).catch((error: unknown) => {
   const message = error instanceof Error ? error.message : String(error);
-  console.error(`agentrail: ${message}`);
+  console.error(`agenstral: ${message}`);
   process.exitCode = 1;
 });

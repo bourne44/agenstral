@@ -13,8 +13,9 @@ Use this workflow to reduce mistakes and avoid expensive backtracking.
 ## Release Gate
 
 - `npm run verify` passes.
-- `agentrail scan --workspace .` has no critical findings created by the project itself.
-- `agentrail audit verify <log>` succeeds for generated demo logs.
+- `agenstral scan --workspace .` has no critical findings created by the project itself.
+- `agenstral audit verify <log>` succeeds for generated demo logs.
+- `agenstral report` writes `.agenstral/report.html`.
 - README commands still work.
 
 ## Backtracking Model
@@ -24,7 +25,8 @@ The source of truth is split into compact layers:
 - Intent and structure: `docs/PROJECT_MAP.md`
 - Rationale: `docs/DECISIONS.md`
 - Behavior: tests
-- Runtime evidence: `.agentrail/audit.jsonl`
+- Runtime evidence: `.agenstral/audit.jsonl`
+- Review surface: `.agenstral/report.html`
 - User-facing commands: README
 
 When debugging, start with the layer that failed instead of scanning unrelated code.
