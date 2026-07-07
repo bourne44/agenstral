@@ -14,6 +14,7 @@ Agenstral protects the boundary between AI coding agents and the tools they can 
 
 - Malicious MCP servers.
 - Compromised package versions used by MCP server launch commands.
+- Compromised package-script or CI workflow changes that execute remote code.
 - Prompt injection from issues, docs, webpages, tickets, chat, and tool output.
 - Over-permissive agents acting without malicious input.
 - Local users or processes that tamper with audit files after a session.
@@ -21,6 +22,7 @@ Agenstral protects the boundary between AI coding agents and the tools they can 
 ## In Scope
 
 - Discovering risky local MCP and agent configuration.
+- Discovering risky package scripts and GitHub Actions workflow patterns before agent work starts.
 - Blocking or requiring approval for risky tool calls routed through Agenstral.
 - Blocking or requiring explicit approval for shell commands executed through `agenstral run`.
 - Redacting secret-looking values from audit output.
@@ -40,3 +42,4 @@ Agenstral protects the boundary between AI coding agents and the tools they can 
 - Route MCP servers through Agenstral or an equivalent gateway.
 - Store audit logs in append-only storage for regulated workflows.
 - Pin MCP server package versions.
+- Pin GitHub Actions to full commit SHAs and avoid privileged workflow events for untrusted pull request code.

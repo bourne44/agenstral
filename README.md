@@ -8,7 +8,7 @@ It gives developers a clear answer to three questions before an agent is trusted
 - What tool calls are allowed, denied, or require approval?
 - What actually happened during a session?
 
-The project starts small on purpose: a strict TypeScript CLI, deterministic policy evaluation, local scan reports, and tamper-evident audit logs. The architecture is shaped so MCP proxying, shell/file mediation, dashboards, and team governance can be added without rewriting the core.
+The project starts small on purpose: a strict TypeScript CLI, deterministic policy evaluation, local scan reports, supply-chain risk checks, and tamper-evident audit logs. The architecture is shaped so MCP proxying, shell/file mediation, dashboards, and team governance can be added without rewriting the core.
 
 ## Status
 
@@ -39,7 +39,7 @@ agenstral state
 
 ## Core Commands
 
-- `scan`: discover MCP configs, agent guidance files, risky commands, exposed secrets, and missing project controls.
+- `scan`: discover MCP configs, agent guidance files, risky package scripts, risky GitHub Actions workflows, exposed secrets, and missing project controls.
 - `policy init`: create a starter `.agenstral/policy.json`.
 - `check`: evaluate one tool call JSON file against policy.
 - `run`: execute a local shell command through Agenstral policy and audit logging.

@@ -9,7 +9,7 @@ This file is the navigation layer for contributors. It should stay short and cur
 - `src/policy/*`: deterministic policy loading and evaluation.
 - `src/audit/*`: tamper-evident JSONL audit records.
 - `src/bundle/*`: portable evidence bundles for handoff and backtracking.
-- `src/scanner/*`: local discovery and static risk checks.
+- `src/scanner/*`: local discovery plus MCP, package script, workflow, and static risk checks.
 - `src/proxy/*`: stdio MCP mediation.
 - `src/secrets/*`: secret detection and redaction.
 - `src/reporting/*`: stable console output and summaries.
@@ -17,7 +17,7 @@ This file is the navigation layer for contributors. It should stay short and cur
 
 ## Data Flow
 
-1. `scan` reads workspace and known config paths, then emits findings.
+1. `scan` reads workspace files, package scripts, workflow files, and known config paths, then emits findings.
 2. `policy init` writes `.agenstral/policy.json`.
 3. `check` loads one tool call and evaluates it against policy.
 4. `run` evaluates a shell command against policy, writes audit events, and executes only when allowed or explicitly approved.
@@ -33,7 +33,7 @@ This file is the navigation layer for contributors. It should stay short and cur
 - Policy bug: inspect `src/policy/policyEngine.ts` and tests.
 - Audit bug: inspect `src/audit/auditLog.ts` and tests.
 - Bundle bug: inspect `src/bundle/evidenceBundle.ts` and tests.
-- Scan false positive: inspect `src/scanner/*` and `src/secrets/detect.ts`.
+- Scan false positive: inspect `src/scanner/*`, especially `shellRisk.ts`, `packageScripts.ts`, `githubActions.ts`, and `src/secrets/detect.ts`.
 - Proxy issue: inspect `src/proxy/stdioProxy.ts`.
 - CLI wiring issue: inspect `src/cli.ts` and the matching command in `src/commands`.
 - Backtracking issue: run `agenstral state` first, then `agenstral bundle verify .agenstral/bundle.json`, then `agenstral report`.

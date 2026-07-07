@@ -18,11 +18,13 @@ Agenstral is a local-first security tool for AI coding agents. The architecture 
 3. Adapter layer
    - `src/scanner/*`
    - `src/proxy/*`
-   - Owns external formats and transports.
+   - Owns external formats, transports, and deterministic workspace risk checks.
 
 4. Reporting layer
    - `src/reporting/*`
+   - `src/bundle/*`
    - Owns stable human-readable summaries.
+   - Owns portable evidence snapshots for handoff and later dashboard ingestion.
 
 ## Contracts
 

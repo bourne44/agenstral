@@ -27,3 +27,7 @@ The original working name collided with existing projects in the AI coding-agent
 ## D-007: Evidence Bundle As Backtracking Contract
 
 Agenstral writes a portable JSON evidence bundle that includes scan output, effective policy, audit records, audit verification, Git state, system map, and a rendered HTML report. The bundle has its own deterministic hash so handoff, CI artifacts, and future dashboards can verify the same local evidence without rereading the whole repository.
+
+## D-008: Heuristic Supply-Chain Checks Without Runtime Dependencies
+
+The scanner performs deterministic checks for risky package scripts and GitHub Actions workflow patterns without adding runtime parser dependencies. JSON manifests are parsed structurally; workflow checks are line-based and conservative. A full YAML parser can be introduced later if it materially reduces false positives or enables safer policy decisions.

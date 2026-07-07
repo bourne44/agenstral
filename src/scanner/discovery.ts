@@ -4,6 +4,8 @@ import { dirname, join, resolve } from "node:path";
 import type { Finding, GuidanceFile, JsonObject, JsonValue, McpServerConfig, ScanReport } from "../domain/types.js";
 import { detectSecrets } from "../secrets/detect.js";
 import { asStringArray, isJsonObject } from "../utils/jsonFile.js";
+import { scanGitHubWorkflows } from "./githubActions.js";
+import { scanPackageScripts } from "./packageScripts.js";
 
 export interface ScanOptions {
   workspace: string;
@@ -16,6 +18,8 @@ export async function scanWorkspace(options: ScanOptions): Promise<ScanReport> {
   const guidance = await discoverGuidanceFiles(workspace, findings);
 
   await scanSensitiveWorkspaceFiles(workspace, findings);
+  await scanPackageScripts(workspace, findings);
+  await scanGitHubWorkflows(workspace, findings);
 
   if (configs.length === 0) {
     findings.push({

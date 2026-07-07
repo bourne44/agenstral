@@ -22,8 +22,8 @@ export const SYSTEM_COMPONENTS: SystemComponent[] = [
   },
   {
     name: "Scanner",
-    purpose: "Local discovery of MCP configs, agent guidance, and risky settings.",
-    owns: ["src/scanner/discovery.ts"]
+    purpose: "Local discovery of MCP configs, agent guidance, package scripts, workflows, and risky settings.",
+    owns: ["src/scanner/discovery.ts", "src/scanner/packageScripts.ts", "src/scanner/githubActions.ts", "src/scanner/shellRisk.ts"]
   },
   {
     name: "Proxy",
