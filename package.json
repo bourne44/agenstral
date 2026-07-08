@@ -4,6 +4,15 @@
   "description": "Local preflight and audit recorder for AI coding agents working inside repositories.",
   "type": "module",
   "license": "Apache-2.0",
+  "author": "bourne44 <marcosspiazza@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bourne44/agenstral.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bourne44/agenstral/issues"
+  },
+  "homepage": "https://github.com/bourne44/agenstral#readme",
   "keywords": [
     "ai-agents",
     "mcp",
