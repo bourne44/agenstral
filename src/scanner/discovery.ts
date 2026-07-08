@@ -75,13 +75,11 @@ function candidateConfigPaths(workspace: string): string[] {
     join(workspace, "mcp.json"),
     join(workspace, ".cursor", "mcp.json"),
     join(workspace, ".vscode", "mcp.json"),
-    join(home, ".cursor", "mcp.json"),
-    join(home, ".config", "claude", "claude_desktop_config.json")
+    join(home, ".cursor", "mcp.json")
   ];
 
   if (appData) {
     paths.push(
-      join(appData, "Claude", "claude_desktop_config.json"),
       join(appData, "Cursor", "User", "mcp.json"),
       join(appData, "Code", "User", "mcp.json")
     );
