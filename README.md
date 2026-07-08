@@ -1,14 +1,21 @@
 # Agenstral
 
-Agenstral is a local preflight and audit tool for letting AI coding agents work inside a repository without guessing what they can touch.
+Letting an AI agent loose in a real codebase is nerve-wracking, not because it's
+malicious, but because when something goes wrong you can't always explain what
+happened. *"The agent changed our deploy script"* doesn't hold up when someone
+asks which lines, when, and why. And *"trust me, the logs are fine"* is not an
+answer you want to give a compliance officer.
 
-It answers three questions before an agent is trusted with a repository:
+Agenstral is a small, local CLI that helps you answer three questions before and
+after you hand a repository to an agent:
 
-- **What agent tooling is configured here?** — MCP servers, guidance files, risky scripts and workflows, exposed secrets.
-- **What is this agent allowed to do?** — deterministic, explainable policy decisions on each tool call.
-- **What actually happened?** — a tamper-evident audit log you can verify.
+- **What's actually risky in here?** Hardcoded secrets, `curl | bash` scripts, `pull_request_target` workflows, unpinned actions, stray MCP configs.
+- **What is this agent allowed to do?** A plain JSON policy you can read, evaluated the same way every time.
+- **What actually happened?** An audit log where every record is hash-chained to the last one, so tampering breaks the chain and `audit verify` catches it.
 
-It is a strict TypeScript CLI with **no runtime dependencies**, local-first, no accounts, no telemetry.
+Everything runs on your machine. No cloud, no telemetry, no accounts, no vendor
+lock-in, and you own the logs. It's free and open source (Apache-2.0): a strict
+TypeScript CLI with **zero runtime dependencies**.
 
 ## Try it in 30 seconds
 
@@ -87,9 +94,10 @@ agenstral bundle                                                 # portable evid
 agenstral state                                                  # one-shot summary of everything
 ```
 
-The audit log is append-only JSONL where each record is hash-chained to the
-previous one. Edit or delete any past line and `audit verify` fails with a
-`hash mismatch` — that's the tamper-evidence.
+The audit log is plain append-only JSONL, nothing fancy, no blockchain. Each
+record just carries the hash of the one before it. Edit or delete any past line
+and `audit verify` fails with a `hash mismatch`. That's the whole trick, and it's
+enough to prove the history wasn't rewritten after the fact.
 
 ## Command reference
 
@@ -107,7 +115,14 @@ previous one. Edit or delete any past line and `audit verify` fails with a
 
 ## Status
 
-Early open-source MVP. The strong parts today are **scan** and **tamper-evident audit**. Runtime mediation via `proxy` is intentionally conservative and still growing — see the [roadmap](docs/ROADMAP.md).
+This is early, and I'd rather be honest about it. The parts I trust today are
+**scan** and the **tamper-evident audit**. Those are solid and useful right now.
+Runtime mediation through `proxy` is deliberately cautious and still growing; I'd
+rather ship a small thing that does what it says than a big thing that pretends.
+The [roadmap](docs/ROADMAP.md) lays out where it's headed.
+
+If you clone it and point it at a real repo, I'd genuinely like to hear what you
+expected versus what you found. Issues and rough edges welcome.
 
 ## Design principles
 
@@ -119,14 +134,14 @@ Early open-source MVP. The strong parts today are **scan** and **tamper-evident 
 
 ## Documentation
 
-- [Project map](docs/PROJECT_MAP.md) — compact navigation for contributors.
-- [Architecture](docs/ARCHITECTURE.md) — layers, contracts, and extension path.
-- [Threat model](docs/THREAT_MODEL.md) — what Agenstral does and does not protect.
-- [Workflow](docs/WORKFLOW.md) — local development loop and release gate.
-- [Release](docs/RELEASE.md) — local release process and publication checklist.
-- [Roadmap](docs/ROADMAP.md) — near-term and long-term direction.
-- [Positioning](docs/POSITIONING.md) — what this project is and deliberately is not.
-- [Changelog](CHANGELOG.md) — notable changes by version.
+- [Project map](docs/PROJECT_MAP.md): compact navigation for contributors.
+- [Architecture](docs/ARCHITECTURE.md): layers, contracts, and extension path.
+- [Threat model](docs/THREAT_MODEL.md): what Agenstral does and does not protect.
+- [Workflow](docs/WORKFLOW.md): local development loop and release gate.
+- [Release](docs/RELEASE.md): local release process and publication checklist.
+- [Roadmap](docs/ROADMAP.md): near-term and long-term direction.
+- [Positioning](docs/POSITIONING.md): what this project is and deliberately is not.
+- [Changelog](CHANGELOG.md): notable changes by version.
 
 ## Contributing
 
