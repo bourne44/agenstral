@@ -59,6 +59,82 @@ async function inspectWorkflow(file: string, findings: Finding[]): Promise<void>
 
   inspectActions(file, lines, findings);
   inspectRunBlocks(file, lines, findings);
+  inspectAgenticTrigger(file, lines, findings);
+}
+
+function inspectAgenticTrigger(file: string, lines: string[], findings: Finding[]): void {
+  const trigger = detectUntrustedTrigger(lines);
+  if (!trigger) {
+    return;
+  }
+
+  const agentActions = [
+    ...new Set(
+      lines
+        .map((line) => parseUsesAction(line))
+        .filter((action): action is string => action !== null && isAgentAction(action))
+    )
+  ];
+
+  if (agentActions.length === 0) {
+    return;
+  }
+
+  findings.push({
+    id: "github.workflow.agentic-untrusted-trigger",
+    title: "AI agent workflow can be triggered by untrusted input",
+    severity: "high",
+    location: file,
+    detail: `The workflow runs an AI agent (${agentActions.slice(0, 3).join(", ")}) on the "${trigger}" event, whose payload is attacker-controlled. Hidden instructions in an issue, comment, or pull request can steer the agent into leaking private data or abusing its permissions (the GitLost class of prompt-injection attacks).`,
+    recommendation: "Do not run autonomous agents directly on untrusted-input triggers. If unavoidable, isolate the agent from repository secrets and write permissions and require human approval before it acts."
+  });
+}
+
+function detectUntrustedTrigger(lines: string[]): string | null {
+  const onBlock = extractOnBlock(lines);
+  if (!onBlock) {
+    return null;
+  }
+
+  for (const trigger of UNTRUSTED_TRIGGERS) {
+    if (new RegExp(`(^|[\\s,\\[])${trigger}(\\s|:|,|\\]|$)`, "im").test(onBlock)) {
+      return trigger;
+    }
+  }
+
+  return null;
+}
+
+function extractOnBlock(lines: string[]): string {
+  let start = -1;
+  for (let index = 0; index < lines.length; index += 1) {
+    if (/^on\s*:/.test(lines[index] ?? "")) {
+      start = index;
+      break;
+    }
+  }
+
+  if (start === -1) {
+    return "";
+  }
+
+  const collected = [(lines[start] ?? "").replace(/^on\s*:/, "").trim()];
+  for (let index = start + 1; index < lines.length; index += 1) {
+    const line = lines[index] ?? "";
+    if (line.trim().length === 0) {
+      continue;
+    }
+    if (/^\S/.test(line)) {
+      break;
+    }
+    collected.push(line.trim());
+  }
+
+  return collected.join("\n");
+}
+
+function isAgentAction(action: string): boolean {
+  return AGENT_ACTION_HINTS.some((pattern) => pattern.test(action));
 }
 
 function inspectActions(file: string, lines: string[], findings: Finding[]): void {
@@ -171,6 +247,23 @@ function stripInlineComment(value: string): string {
 function indentOf(value: string): number {
   return value.match(/^\s*/)?.[0].length ?? 0;
 }
+
+const UNTRUSTED_TRIGGERS = [
+  "issue_comment",
+  "issues",
+  "pull_request_target",
+  "discussion_comment",
+  "discussion"
+];
+
+const AGENT_ACTION_HINTS = [
+  /^anthropics\//i,
+  /^openai\//i,
+  /copilot/i,
+  /gemini/i,
+  /ai-inference/i,
+  /(^|\/|-)agents?(-|\/|@|$)/i
+];
 
 async function workflowFiles(workflowDir: string): Promise<string[]> {
   const entries = await readdir(workflowDir);

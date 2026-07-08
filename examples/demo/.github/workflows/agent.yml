@@ -1,0 +1,11 @@
+name: issue-triage
+on: issue_comment
+permissions: write-all
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/ai-inference@v1
+        with:
+          prompt: ${{ github.event.comment.body }}

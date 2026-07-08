@@ -9,7 +9,7 @@ answer you want to give a compliance officer.
 Agenstral is a small, local CLI that helps you answer three questions before and
 after you hand a repository to an agent:
 
-- **What's actually risky in here?** Hardcoded secrets, `curl | bash` scripts, `pull_request_target` workflows, unpinned actions, stray MCP configs.
+- **What's actually risky in here?** Hardcoded secrets, `curl | bash` scripts, unpinned actions, AI-agent workflows wired to untrusted triggers (the GitLost class), stray MCP configs.
 - **What is this agent allowed to do?** A plain JSON policy you can read, evaluated the same way every time.
 - **What actually happened?** An audit log where every record is hash-chained to the last one, so tampering breaks the chain and `audit verify` catches it.
 
@@ -34,15 +34,16 @@ Agenstral Scan
 Workspace: .../examples/demo
 MCP servers: 0
 Guidance files: 1
-Findings: 10
+Findings: 13
 
-- [critical] Secret-looking value in package script        (AWS key in a deploy script)
-- [high]     Command downloads and executes remote code    (curl | bash in postinstall)
-- [high]     Command can destroy repository state          (rm -rf ./ in a script)
+- [high]     AI agent workflow can be triggered by untrusted input   (issue_comment -> agent)
+- [critical] Secret-looking value in package script                  (AWS key in a deploy script)
+- [high]     Command downloads and executes remote code              (curl | bash in postinstall)
+- [high]     Command can destroy repository state                    (rm -rf ./ in a script)
 - [high]     GitHub Actions workflow uses pull_request_target
 - [high]     GitHub Actions workflow grants write-all permissions
 - [medium]   GitHub Actions workflow uses unpinned actions
-- [medium]   Command uses an unpinned package runner        (npx ...@latest)
+- [medium]   Command uses an unpinned package runner                 (npx ...@latest)
 - [medium]   Agent guidance is missing safety-critical sections
   ...
 ```
@@ -101,7 +102,7 @@ enough to prove the history wasn't rewritten after the fact.
 
 ## Command reference
 
-- `scan`: discover MCP configs, agent guidance files, risky package scripts, risky GitHub Actions workflows, exposed secrets, and missing project controls.
+- `scan`: discover MCP configs, agent guidance files, risky package scripts, risky GitHub Actions workflows (including AI agents wired to untrusted triggers), exposed secrets, and missing project controls.
 - `doctor`: check release and handoff readiness across manifest, required files, CI, scan, audit, Git state, and ignored generated paths.
 - `policy init`: create a starter `.agenstral/policy.json`.
 - `check`: evaluate one tool-call JSON file against policy.

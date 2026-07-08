@@ -2,6 +2,10 @@
 
 All notable changes to Agenstral are tracked here.
 
+## Unreleased
+
+- Added scan detection for AI-agent workflows triggered by untrusted input (issue, comment, and pull-request events), the precondition behind GitLost-style prompt-injection exfiltration.
+
 ## 0.1.0 - 2026-07-07
 
 - Added local workspace scanning for MCP configuration, agent guidance, package scripts, GitHub Actions workflows, exposed secrets, and supply-chain risk patterns.
